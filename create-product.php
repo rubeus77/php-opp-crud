@@ -25,8 +25,24 @@
 
 ?>
 <!-- PHP post code will be here -->
+<?php
+// if the form was submitted - "PHP_SELF"
+if($_POST){
 
+    //set product property values
+    $product->name = $_POST['name'];
+    $product->price = $_POST['price'];
+    $product->description = $_POST['description'];
+    $product->category_id = $_POST['category_id'];
 
+    //create the product
+    if($product->create()){
+        echo "<div class='alert alert-success'>Product was created </div>";
+    }else{
+        echo "<div class='alert alert-danger'>Enable to create product</div>";
+    }
+}
+?>
 <!-- HTML form for product -->
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <table class="table table-hover table-responsive table-bordered">

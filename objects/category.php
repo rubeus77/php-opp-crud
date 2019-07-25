@@ -25,11 +25,11 @@ class Category{
     function readName(){
         $query = "SELECT name FROM ".$this->table_name." WHERE id = ? limit 0,1";
 
-        $stsm = $this->conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $this->name=$row['name'];
     }
